@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body onload="getUser()">
+
+    <h1> whats up from admin</h1>
+
+    <header id="home" class="header">
+        <nav class="nav" role="navigation">
+            <div class="container nav-elements">
+                <div class="branding">
+                    <a href="#home">TRMS</a>
+                </div>
+
+                <ul class="navbar">
+                    <div class="links-container">
+                        <li><a href="home.html">home</a></li>
+                        <li><a href='reim.html'>Reimbursement request</a></li>
+                        <li><a href='logout'>logout</a></li>
+                </ul>
+            </div>
+            <!-- navbar -->
+            </div>
+            <!-- container nav-elements -->
+        </nav>
+        <div class="container-tagline">
+            <h1 class="headline">Our Mission</h1>
+            <p>We support and encourage <em>continued learning</em> by offering <em>tuition reimbursements</em> for
+                <em>all</em> Employees</p>
+        </div>
+    </header>
+
+
+    <h1> view any requests</h1>
+
+
+
+    <fieldset>
+        <legend> Reimbursement Request Lists </legend>
+
+        <table class="table table-light table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Work Related</th>
+                    <th scope="col">status</th>
+                    <th scope="col">Approval</th>
+                </tr>
+            </thead>
+            <tbody id="tableRow"></tbody>
+        </table>
+    </fieldset>
+
+
+    <button onclick="getReimbursements()"> get requests</button>
+    <button onclick="populateData()"> get requests</button>
+
+
+    <!-- <form action="/colby-stopyak-p1h/reimbursement" method="PUT">
+
+        <div class="form-group row">
+            <label for="re_id" class="col-sm-2 col-form-label">Reimbursement ID</label>
+            <input type="number" id="rm_id" name="rm_id">
+        </div>
+
+        <div class="form-group row">
+            <label for="status" class="col-sm-2 col-form-label">Status</label>
+            <input type="text" id="status" name="status">
+        </div>
+        <div class="form-group row">
+            <label for="is_approved" class="col-sm-2 col-form-label">Approved</label>
+            <input type="text" id="is_approved" name="is_approved">
+        </div>
+
+        <div class="col-auto my-1">
+            <button id="submitBtn" onclick="makeDecision()" type="button" class="btn btn-primary">Submit</button>
+        </div>
+
+
+
+    </form> -->
+
+    <div class="container">
+
+        <div>
+            <label for="emp_id"><b> Employee Id</b></label><br>
+            <input id="emp_id" type="number">
+        </div>
+
+        <div>
+            <label for="rm_id"><b> Reimbursement Id </b></label><br>
+            <input id="rm_id" type="number">
+        </div>
+
+
+        <div>
+            <label for="status"><b> status </b></label><br>
+            <input id="status" type="text">
+        </div>
+        
+        <div>
+
+            <button type="button" id="add" class="btn btn-primary" onclick="updateM()">update
+                Reimbursement</button>
+        </div>
+
+    </div>
+
+
+    <script src="js/users.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

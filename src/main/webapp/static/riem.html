@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Add Reimbursement</title>
+</head>
+<body onload="getUser()">
+<header id="home" class="header">
+    <nav class="nav" role="navigation">
+        <div class="container nav-elements">
+            <div class="branding">
+                <a href="#home">TRMS</a>
+            </div>
+
+            <ul class="navbar">
+                <div class="links-container">
+                    <li><a href="home.html">home</a></li>
+                    <li><a href='riem.html'>Reimbursement request</a></li>
+                    <li><a href='logout'>logout</a></li>
+            </ul>
+        </div>
+        <!-- navbar -->
+        </div>
+        <!-- container nav-elements -->
+    </nav>
+    <div class="container-tagline">
+        <h2> Submit a new Reimbursement</h2>
+    </div>
+</header>
+
+
+<form method="post" action="/reimbursement">
+    <p>
+        <label for ="description"> description: </label>
+        <input type="text" id="description" name="description" />
+    </p>
+    <p>
+        <label for ="amount">Amount:</label>
+        <input type="integer" id="amount" name="amount" />
+    </p>
+    <p>
+        <label for ="work_related"> Work Related</label>
+        <input type="text" id="work_related" name="work_related" />
+    </p>
+    <p>
+        <label for ="status"> status</label>
+        <input type="text" id="status" name="status" />
+    </p>
+
+    <input type="submit" value="submit" />
+
+
+</form>
+
+
+<h1> JS form</h1>
+<form method="POST">
+    <div class="form-group">
+        <label for="description">Description</label>
+
+        <textarea class="form-control" id="description" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="workRelated">Work Related</label>
+        <select class="form-control" id="workRelated">
+            <option> </option>
+            <option>Personal</option>
+            <option>Professional</option>
+            <option>Seminar</option>
+            <option>Pass</option>
+            <option>Fail</option>
+        </select>
+    </div>
+
+
+    <div class="form-group">
+        <label for="amount">Amount</label>
+        <input type="number" class="form-control" id="cost" placeholder=" Amount requested">
+    </div>
+
+    <div class="form-group">
+        <label for="start">Start Date</label>
+        <input type="datetime" class="form-control" id="startDate" placeholder="MM/DD/YYYY">
+    </div>
+    <div class="col-auto my-1">
+        <button id="submit"  onclick="newRm()" class="btn btn-primary">Submit</button>
+    </div>
+
+</form>
+
+
+<script src = "./WEB-INF/static/Js/form.js"></script>
+<script src = "./WEB-INF/static/Js/newForm.js"></script>
+</body>
+</html>
