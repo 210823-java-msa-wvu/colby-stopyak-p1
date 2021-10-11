@@ -49,7 +49,7 @@ public class ReimbursementController implements FrontController{
             }
             else {
             int rm_id = Integer.parseInt(path);
-            Reimbursement riem = null;
+//            Reimbursement riem = null;
             switch(request.getMethod()){
                 case "GET":{
                     System.out.println("getting by rm id");
@@ -58,9 +58,9 @@ public class ReimbursementController implements FrontController{
                 }
                 case "PUT":{
                     System.out.println("updating put");
-                    riem = om.readValue(request.getReader(), Reimbursement.class);
-                    rServ.update(riem);
-                    System.out.println(riem);
+                    Reimbursement r= om.readValue(request.getReader(), Reimbursement.class);
+                    rServ.update(r);
+                    System.out.println(r);
                     break;
                 }
 

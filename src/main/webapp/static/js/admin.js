@@ -36,39 +36,44 @@ function updateManager() {
     }
     let url = 'http://localhost:8080/colby-stopyak-p1h/reimbursement/';
     // xhttp.open('PUT', url + rm_idInput, true)
+    
+    
+    
     xhttp.open('PUT', url + rm_idInput, true);
     xhttp.setRequestHeader('Content-Type', 'application/json');
-    // xhttp.send(newForm);
+    // // xhttp.send(newForm);
     xhttp.send(JSON.stringify(data));
+
+    
     
 }
 
-async function updateM(){
-    console.log("click updatem")
-    let url = 'http://localhost:8080/colby-stopyak-p1h/reimbursement/';
+// async function updateM(){
+//     console.log("click updatem")
+//     let url = 'http://localhost:8080/colby-stopyak-p1h/reimbursement/';
 
-    let rm_idInput = document.getElementById('rm_id').value;
+//     let rm_idInput = document.getElementById('rm_id').value;
 
-    let data = {
-        rm_id: rm_idInput,
-        user: {emp_id: localStorage.getItem('emp_id')},
+//     let data = {
+//         rm_id: rm_idInput,
+//         user: {emp_id: localStorage.getItem('emp_id')},
         
-        // description: document.getElementById('description').value,
-        // location: document.getElementById('location').value,
-        // amount: document.getElementById('amount').value,
-        // work_related: document.getElementById('work_related').value,
-        status: document.getElementById('status').value,
+//         // description: document.getElementById('description').value,
+//         // location: document.getElementById('location').value,
+//         // amount: document.getElementById('amount').value,
+//         // work_related: document.getElementById('work_related').value,
+//         status: document.getElementById('status').value,
         
-        is_approved: false
+//         is_approved: false
 
-    }
-    let res = await fetch(url + rm_idInput, {
-        method: "PUT",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(data)
-    });
+//     }
+//     let res = await fetch(url + rm_idInput, {
+//         method: "PUT",
+//         headers: {"Content-Type": "application/json"},
+//         body: JSON.stringify(data)
+//     });
 
-}
+// }
 
 
 // var req;
