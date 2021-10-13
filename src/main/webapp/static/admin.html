@@ -38,31 +38,14 @@
 
 
     <h1> view any requests</h1>
+    <section id="tables"></section> 
 
 
 
-    <fieldset>
-        <legend> Reimbursement Request Lists </legend>
+    
 
-        <table class="table table-light table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Location</th>
-                    <th scope="col">Work Related</th>
-                    <th scope="col">status</th>
-                    <th scope="col">Approval</th>
-                </tr>
-            </thead>
-            <tbody id="tableRow"></tbody>
-        </table>
-    </fieldset>
-
-
-    <button onclick="getReimbursements()"> get requests</button>
-    <button onclick="populateData()"> get requests</button>
+    
+    <button onclick="viewData()"> view data</button>
 
 
     <!-- <form action="/colby-stopyak-p1h/reimbursement" method="PUT">
@@ -91,14 +74,18 @@
 
     <div class="container">
 
-        <div>
+        <!-- <div>
             <label for="emp_id"><b> Employee Id</b></label><br>
             <input id="emp_id" type="number">
-        </div>
+        </div> -->
 
         <div>
             <label for="rm_id"><b> Reimbursement Id </b></label><br>
             <input id="rm_id" type="number">
+        </div>
+        <div>
+            <label for="amount"><b> Confirm Amount </b></label><br>
+            <input id="amount" type="number">
         </div>
 
 

@@ -38,39 +38,39 @@ function add() {
     //     is_approved: false
 
     // }
-    if(work_relatedI == "universityCourses")
-        amount = amount * 0.8;
+    if(work_relatedI == "university")
+        currAmount = amount * 0.8;
     
         
     else if (work_relatedI == "Seminars")
-        amount = amount * 0.6;
+    currAmount = amount * 0.6;
     
         
     else if (work_relatedI == "certificationclass")
-        amount = amount * 0.75;
+    currAmount = amount * 0.75;
     
         
     else if (work_relatedI == "certification")
-        amount = amount;
+    currAmount = amount;
     
         
     else if (work_relatedI == "technicalTraining")
-        amount = amount * 0.9;
+    currAmount = amount * 0.9;
     
         
     else if(work_relatedI == "other")
-        amount = amount * 0.3;
+    currAmount = amount * 0.3;
     
         
-    if (amount > 1000)
-            amount = 1000;
+    // if (amount > 1000)
+    // currAmount = 1000;
     
 
     let newForm = {
         user: {emp_id: localStorage.getItem('emp_id')},
         description: document.getElementById('description').value,
         location: document.getElementById('location').value,
-        amount: document.getElementById('amount').value,
+        amount: document.getElementById('currAmount').value,
         work_related: work_relatedI,
         status: "pending",
         is_approved: false
@@ -105,28 +105,119 @@ function add() {
 //     let url = 
 // }
 
+// function getReim() {
+//     let url = 'http://localhost:8080/colby-stopyak-p1h/reimbursement/';
 
+
+//     let xhr = new XMLHttpRequest();
+//     xhr.onreadystatechange = getData;
+
+//     function getData() {
+//         console.log(this.readyState);
+
+//         if (this.readyState == 4 & this.status == 200) {
+//             let req = this.responseText;
+//             req = JSON.parse(req);
+//             console.log(req);
+//         }
+//     }
+//     xhr.open('GET', url, true);
+//     xhr.send();
+
+// }
 // gets all by rm id
 function getReim() {
     let url = 'http://localhost:8080/colby-stopyak-p1h/reimbursement/';
 
 
     let xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = getData;
-
-    function getData() {
-        console.log(this.readyState);
+    xhr.onreadystatechange = function() {
+        // console.log(this.readyState);
 
         if (this.readyState == 4 & this.status == 200) {
-            let req = this.responseText;
-            req = JSON.parse(req);
+            let req = JSON.parse(this.responseText)
             console.log(req);
+
+
+            const tableRow = document.getElementById("tableRow")
+            tableRow.innerHTML = "";
+            let count = 1;
+            req.array.forEach(res => {
+                idArray.push(res.id);
+
+                const content = `
+                    <tr>
+                        <th scope="row> ${res.id}> </th>
+                        <td> ${res.user.username} </td>
+                        <td> ${res.rm_id} </td>
+                        <td> ${res.description} </td>
+                        <td> ${res.location} </td>
+                        <td> ${res.amount} </td>
+                        <td> ${res.work_related} </td>
+                        <td> ${res.status} </td>
+                        <td> ${res.is_approved} </td>
+                        <td> ${res.user.emp_id} </td>
+                    </tr>
+                
+                
+                `
+                tableRow.innerHTML += content;
+                count++;
+            })
         }
     }
     xhr.open('GET', url, true);
     xhr.send();
 
 }
+function get(){
+        let xhttp = new XMLHttpRequest();
+    
+        xhttp.onreadystatechange = function() {
+            console.log("state ready" + this.readyState);
+    
+    
+            if(this.readyState == 4 && this.status == 200){
+    
+                let req = JSON.parse(this.responseText)
+                console.log(req);
+    
+    
+                const tableRow = document.getElementById("tableRow")
+                tableRow.innerHTML = "";
+                req.array.forEach(res => {
+                    idArray.push(res.id);
+    
+                    const content = `
+                        <tr>
+                            <th scope="row> ${res.id}> </th>
+                            <td> ${res.user.username} </td>
+                            <td> ${res.rm_id} </td>
+                            <td> ${res.description} </td>
+                            <td> ${res.location} </td>
+                            <td> ${res.amount} </td>
+                            <td> ${res.work_related} </td>
+                            <td> ${res.status} </td>
+                            <td> ${res.is_approved} </td>
+                            <td> ${res.user.emp_id} </td>
+                        </tr>
+                    
+                    
+                    `
+                    tableRow.innerHTML += content;
+                })
+            }
+        }
+    
+        let url = `http://localhost:8080/colby-stopyak-p1h/reimbursement`
+    
+        //step3
+        xhttp.open("GET", url, true);
+    
+        //step4
+        xhttp.send();
+    
+    }
 
 
 

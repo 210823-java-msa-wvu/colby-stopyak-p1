@@ -30,8 +30,24 @@ public class ReimbursementService {
         return res;
     }
 
+//    public Reimbursement add (Reimbursement r) {
+//        // made switch case for property in rm in services
+//
+//        Float cost = Float.valueOf(0.0F);
+//        switch(r.getWork_related()){
+//            case"university":{
+//                cost = Float.valueOf(0.8F);
+//                break;
+//
+//            }
+//
+//        }
+//        return rmRepo.add(r);
+//    }
+
     public Reimbursement add (Reimbursement r) {
         // made switch case for property in rm in services
+
         return rmRepo.add(r);
     }
 

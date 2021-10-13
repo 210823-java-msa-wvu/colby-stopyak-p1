@@ -91,10 +91,10 @@
 				<input type="text" id="work_related">
 			</div> -->
 			<div>
-				<label for="cars">Work Related</label>
+				<label for="work_related">Work Related</label>
 
 				<select name="work_related" id="work_related">
-					<option value="universityCourses">College Credit</option>
+					<option value="university">College Credit</option>
 					<option value="Seminars">Seminars</option>
 					<option value="certificationclass">Cert Class</option>
 					<option value="certification">Certification</option>
@@ -112,10 +112,29 @@
 
 		<div class="getRm">
 			<h1>click to get reimbursements</h1>
-			<input type="submit" onclick="getReim()">
+			<button type="button" onclick="getReim()"> Check Reimbursement</button>
+		
+		<table>
+			<thead>
+				<tr>
+					<th>rm Id</th>
+					<th>User</th>
+					<th>rm_id</th>
+					<th>description</th>
+					<th>location</th>
+					<th>amount</th>
+					<th>work related</th>
+					<th>approval</th>
+					<th>employee id</th>
+				</tr>
+			</thead>
+			<tbody id="tableRow">
+
+			</tbody>
+				
+		</table>
+
 		</div>
-
-
 
 
 		<script src="./js/rm.js"></script>

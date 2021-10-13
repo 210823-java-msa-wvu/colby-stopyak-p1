@@ -9,14 +9,10 @@ function updateManager() {
     console.log(rm_idInput);
     let data = {
         rm_id: rm_idInput,
-        user: {emp_id: localStorage.getItem('emp_id')},
-        
-        // description: document.getElementById('description').value,
-        // location: document.getElementById('location').value,
-        // amount: document.getElementById('amount').value,
+        amount: document.getElementById('amount').value,
         // work_related: document.getElementById('work_related').value,
         status: document.getElementById('status').value,
-        
+
         is_approved: false
 
     }
@@ -24,62 +20,87 @@ function updateManager() {
     // console.log("desciption" + descriptionI)
     console.log(JSON.stringify(data));
     // console.log(newForm);
-   
+
 
     let xhttp = new XMLHttpRequest();
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            let resp = this.responseText;
-            console.log(resp);
-        }
-    }
-    let url = 'http://localhost:8080/colby-stopyak-p1h/reimbursement/';
+    let url = `http://localhost:8080/colby-stopyak-p1h/reimbursement/`;
     // xhttp.open('PUT', url + rm_idInput, true)
-    
-    
-    
+
     xhttp.open('PUT', url + rm_idInput, true);
     xhttp.setRequestHeader('Content-Type', 'application/json');
-    // // xhttp.send(newForm);
-    xhttp.send(JSON.stringify(data));
 
-    
-    
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+        }
+    };
+    // xhttp.send(data);
+    xhttp.send(JSON.stringify(data));
 }
 
-// async function updateM(){
-//     console.log("click updatem")
-//     let url = 'http://localhost:8080/colby-stopyak-p1h/reimbursement/';
-
-//     let rm_idInput = document.getElementById('rm_id').value;
-
-//     let data = {
-//         rm_id: rm_idInput,
-//         user: {emp_id: localStorage.getItem('emp_id')},
-        
-//         // description: document.getElementById('description').value,
-//         // location: document.getElementById('location').value,
-//         // amount: document.getElementById('amount').value,
-//         // work_related: document.getElementById('work_related').value,
-//         status: document.getElementById('status').value,
-        
-//         is_approved: false
-
-//     }
-//     let res = await fetch(url + rm_idInput, {
-//         method: "PUT",
-//         headers: {"Content-Type": "application/json"},
-//         body: JSON.stringify(data)
-//     });
-
-// }
 
 
-// var req;
-// const idArray = [];
-// getReq();
-// idList();
+
+function viewData() {
+    let section = document.getElementById("tables")
+    section.innerHTML = '<div> </div>';
+
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = recieveData;
+    xhttp.open('GET', 'http://localhost:8080/colby-stopyak-p1h/reimbursement/');
+    xhttp.send();
+
+
+    function recieveData() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            let r = xhttp.responseText;
+            r = JSON.parse(r);
+            populateData(r);
+
+        }
+    }
+}
+
+function populateData(response){
+
+
+    let section = document.getElementById("tables");
+    section.innerHTML= '';
+
+    //building the table
+
+    let table = document.createElement("Table");
+    
+    section.appendChild(table);
+
+    let head = document.createElement("tr");
+
+    head.innerHTML = "<th> rm_id</th> <th> description</th> <th> amount</th><th> location</th><th> work related</th><th> status</th>";
+    table.appendChild(head);
+
+    for(let i = 0; i < response.length; i++){
+        let rm_id = response[i].rm_id;
+        let description = response[i].description;
+        let amount = response[i].description;
+        let location = response[i].location;
+        let work_related = response[i].work_related;
+        let status = response[i].status;
+
+        let input = document.createElement("tr");
+
+        input.innerHTML += `<td> ${response[i].rm_id} </td>`;
+        input.innerHTML += `<td> ${response[i].description} </td>`;
+        input.innerHTML += `<td> ${response[i].amount} </td>`;
+        input.innerHTML += `<td> ${response[i].location} </td>`;
+        input.innerHTML += `<td> ${response[i].work_related} </td>`;
+        input.innerHTML += `<td> ${response[i].status} </td>`;
+        table.appendChild(input);
+    }
+
+
+}
+
+
 
 // function get(){
 //     let xhttp = new XMLHttpRequest();
@@ -112,8 +133,8 @@ function updateManager() {
 //                         <td> ${res.is_approved} </td>
 //                         <td> ${res.user.emp_id} </td>
 //                     </tr>
-                
-                
+
+
 //                 `
 //                 tableRow.innerHTML += content;
 //             })
@@ -131,44 +152,60 @@ function updateManager() {
 // }
 
 
-function table(){
-    var body = document.body,
-    table = document.createElement('table');
 
-    let row= table.insertRow();
-    let tableData = data[0];
-    for(key in tableData){
-        var th =row.insertCell();
-        th.appendChild(document.createTextNode(key));
 
-    }
-    for(let element of data){
-        var rows = table.insertRow();
-        for( key in element){
-            var tableD = row.insertCell();
-            tableD.appendChild(document.createTextNode(element[key]));
-        }
-    }
-    body.append(table);
-}
+// function getReimbursements(){
+//     console.log('click')
+//     let url = 'http://localhost:8080/colby-stopyak-p1h/reimbursement';
+//     let xhttp = new XMLHttpRequest();
+//     xhttp.onreadystatechange = receiveData;
 
-function getReimbursements(){
-    console.log('click')
-    let url = 'http://localhost:8080/colby-stopyak-p1h/reimbursement';
+//     function receiveData(){
+//         if(this.readyState == 4){
+//             let response = this.responseText;
+//             console.log(response);
+
+//             response = JSON.parse(response);
+//             table(response);
+
+//         }
+//     }
+//     xhttp.open('GET', url, true)
+//     xhttp.send();
+// }
+
+function getTable() {
+    let arr = [];
     let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = receiveData;
 
-    function receiveData(){
-        if(this.readyState == 4){
-            let response = this.responseText;
-            console.log(response);
+    if (this.onreadystatechange == 4 && this.status == 200) {
 
-            response = Json.parse(response);
-            table(response);
+        req = JSON.parse(this.responseText);
 
-        }
+        let tRow = document.getElementById("tRow");
+        tRow.innerHTML = "";
+
+        req.array.forEach(res => {
+            arr.push(res.id);
+
+            let tableContent = `
+        <tr>
+            <th scope ="row"> ${res.rm_id}</th>
+            <td> ${res.description} </td>
+
+
+        </tr>
+        
+        
+        
+        
+        `
+            tRow.innerHTML += tableContent;
+
+        });
     }
-    xhttp.open('GET', url, true)
+    let url = `http://localhost:8080/colby-stopyak-p1h/reimbursement`;
+    xhttp.open('GET', url, true);
     xhttp.send();
 }
 
@@ -212,45 +249,5 @@ function getReimbursements(){
 //         abilities.appendChild(abli);
 //     }
 
-   
-    
-    
 // }
 
-// async function getReimbursementsFetch() {
-
-//     let url = 'http://localhost:8080/colby-stopyak-p1h/reimbursement';
-//     let res = await fetch(url)
-//     let data = await res.json()
-
-//     // the promise method then()
-//     .then(data => {
-//         console.log(data);
-//         table(data);
-//     })
-//     .catch(err => console.log(err));
-
-// }
-
-// function populateData(res) {
-
-//     let lineBreak = document.createElement("br");
-//     let dataSection = document.getElementById('data');
-//     let nameTag = document.createElement('h3');
-
-//     nameTag.innerHTML += "<br>REIMBURSEMENTS:";
-//     dataSection.appendChild(nameTag);
-//     dataSection.appendChild(nameTag);
-
-//     let dataTag = document.createElement('p');
-
-//     for(let i = 0; i < res.length; i++) {
-//         let formData = document.createElement("p");
-
-        
-
-//     }    
-
-
-        
-// }
